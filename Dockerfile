@@ -1,11 +1,6 @@
 FROM ubuntu:latest
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Copies your code file from your action repository to the filesystem path `/` of the container
-COPY entrypoint.sh /entrypoint.sh
-
-# Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["/entrypoint.sh"]
 RUN apt-get update && apt-get -y install make git python3 unzip wget libz1 libncurses5 libbz2-1.0 tk tk-dev tcl tcl-dev gawk \
 # SmartSnippets
 && wget https://www.dialog-semiconductor.com/sites/default/files/smartsnippets_studio-linux.gtk_.x86_64-2.0.14.1749.run_.zip \
@@ -33,3 +28,5 @@ plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.1.1100.v20190907-0426\n\
 && rm gcc-arm-none-eabi-7-2018-q2-update-linux.tar.bz2 \
 && rm -rf /var/lib/apt/lists/*
 ENV PATH="/opt/DiaSemi/SmartSnippetsStudio2.0.14/Tools/mingw64_targeting32/bin:/opt/DiaSemi/SmartSnippetsStudio2.0.14/GCC/gcc-arm-none-eabi-7-2018-q2-update/bin:${PATH}"
+WORKDIR /home
+
