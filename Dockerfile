@@ -1,9 +1,9 @@
 FROM ubuntu:latest
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get -y install make git python3 unzip wget libz1 libncurses5 libbz2-1.0 tk tk-dev tcl tcl-dev gawk \
+RUN apt-get update && apt-get -y install make git python3 unzip wget libz1 libncurses5 libbz2-1.0 tk tk-dev tcl tcl-dev gawk curl \
 # SmartSnippets
-&& wget -q https://www.dialog-semiconductor.com/sites/default/files/2021-03/SmartSnippets_Studio-linux.gtk_.x86_64-2.0.16.1760.zip \
+&& curl -L https://www.renesas.com/us/en/document/sws/smartsnippets-studio-v2016-linux-os?language=en -H 'User-Agent: Mozilla/50 ...' -H 'Cookie: SESSIONID=abcdef1234567890' --output SmartSnippets_Studio-linux.gtk_.x86_64-2.0.16.1760.zip \
 && unzip -q SmartSnippets_Studio-linux.gtk_.x86_64-2.0.16.1760.zip \
 && chmod +x SmartSnippets_Studio-linux.gtk.x86_64-2.0.16.1760.run \
 && ./SmartSnippets_Studio-linux.gtk.x86_64-2.0.16.1760.run -- silent /opt/DiaSemi /not/existing /home 2.0.16.1760 || true \
